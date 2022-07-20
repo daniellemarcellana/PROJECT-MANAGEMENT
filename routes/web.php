@@ -23,7 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('2fa');
+Route::get('/dashboard', [BookController::class, 'dashboard'])->name('dashboard')->middleware('2fa');
+Route::get('/stocks', [BookController::class, 'stocks'])->name('stocks')->middleware('2fa');
+Route::get('/due-dates', [BookController::class, 'due_dates'])->name('due_dates')->middleware('2fa');
+Route::get('/about-us', [BookController::class, 'about'])->name('about')->middleware('2fa');
 
 Route::get('2fa', [App\Http\Controllers\TwoFAController::class, 'index'])->name('2fa.index');
 Route::post('2fa', [App\Http\Controllers\TwoFAController::class, 'store'])->name('2fa.post');
@@ -59,15 +62,7 @@ Route::get('users', [ManageUsers::class, 'render'])->name('users');
 //EDIT USERS
 Route::post('edit-user/{id}', [ManageUsers::class, 'edit'])->name('editUser');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
 
 Auth::routes();
 

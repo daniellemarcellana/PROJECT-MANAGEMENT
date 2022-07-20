@@ -196,4 +196,62 @@ class BookController extends Controller
             return redirect('login');
         }
     }
+    public function dashboard()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {      
+                $total_books = DB::select('SELECT genre, COUNT(*) as count FROM books GROUP BY genre');
+                
+                return view('graphs.dashboard', compact('total_books'));
+
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function stocks()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $total_books = DB::select('SELECT bookTitle, quantity FROM books');
+            
+                return view('graphs.stocks', compact('total_books'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function due_dates()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $duedates = DB::select('SELECT stud_num, stud_name, book_title, returnDate FROM borrowed_books ');
+            
+                return view('graphs.duedates', compact('duedates'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function about()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                return view('graphs.about');
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 foreach ($total_books as $total) {
+<<<<<<< HEAD
     if ($total->genre == "Arts") {
         $arr = array(
             'name' => $total->bookTitle,
@@ -55,6 +56,16 @@ $josn_data3 = json_encode($series_array3);
 $josn_data4 = json_encode($series_array4);
 $josn_data5 = json_encode($series_array5);
 $josn_data6 = json_encode($series_array6);
+=======
+    $arr = array(
+        'name' => $total->bookTitle,
+        'y' => (float)$total->quantity
+    );
+    $series_array[] = $arr;
+}
+
+$josn_data = json_encode($series_array);
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
 ?>
 
 <x-app-layout>
@@ -74,8 +85,15 @@ $josn_data6 = json_encode($series_array6);
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
+<<<<<<< HEAD
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
+=======
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
         <script>
@@ -141,12 +159,17 @@ $josn_data6 = json_encode($series_array6);
                 <div class="sidebar-heading">NAVIGATION</div>
                 <div class="list-group list-group-flush">
                     <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action bg-light">Home</a>
+<<<<<<< HEAD
                     <a href="{{ route('book_monthly') }}" class="list-group-item list-group-item-action bg-light">Books per Month</a>
                     <a href="" class="list-group-item list-group-item-action bg-light active text-dark">Book Availability</a>
                     <a href="{{ route('due_dates') }}" class="list-group-item list-group-item-action bg-light">Due Dates</a>
                     <a href="{{ route('borrowed_chart') }}" class="list-group-item list-group-item-action bg-light">Borrowed Dates</a>
                     <a href="{{ route('borrowed_status') }}" class="list-group-item list-group-item-action bg-light">Borrowed Status</a>
                     <a href="{{ route('students_penalty') }}" class="list-group-item list-group-item-action bg-light">Student's Penalty</a>
+=======
+                    <a href="#" class="list-group-item list-group-item-action bg-light active text-dark">Book Availability</a>
+                    <a href="{{ route('due_dates') }}" class="list-group-item list-group-item-action bg-light">Due Dates</a>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                     <a href="{{ route('about') }}" class="list-group-item list-group-item-action bg-light">About</a>
                     <a href="/admin/user-activity" class="list-group-item list-group-item-action bg-light">Activity Logs</a>
                 </div>
@@ -165,6 +188,7 @@ $josn_data6 = json_encode($series_array6);
                         </div>
                         <div class="mt-6 text-gray-500">
                             In this page, you can see the stocks of each book in the library.
+<<<<<<< HEAD
                             <br><br>
                             
                             @foreach($total_books as $total)
@@ -174,6 +198,8 @@ $josn_data6 = json_encode($series_array6);
                                  <span class="badge badge-primary">{{$total->bookTitle}} : {{$total->quantity}}pcs.</span> 
                             
                             @endforeach
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                         </div>
                     </div>
 
@@ -201,6 +227,7 @@ $josn_data6 = json_encode($series_array6);
             // Create the chart
             Highcharts.chart('container1', {
                 chart: {
+<<<<<<< HEAD
                     type: 'packedbubble',
                     height: '100%'
                 },
@@ -262,6 +289,53 @@ $josn_data6 = json_encode($series_array6);
                 }, {
                     name: 'Science',
                     data: <?= $josn_data6 ?>
+=======
+                    type: 'column'
+                },
+                title: {
+                    align: 'left',
+                    text: 'Stock of Books'
+                },
+                subtitle: {
+                    align: 'left',
+                    text: 'Click the columns to view books on each genre'
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Number of Books'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Count",
+                    colorByPoint: true,
+                    data: <?= $josn_data ?>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                 }]
             });
         </script>

@@ -85,12 +85,17 @@
                 <div class="sidebar-heading">NAVIGATION</div>
                 <div class="list-group list-group-flush">
                     <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action bg-light">Home</a>
+<<<<<<< HEAD
                     <a href="{{ route('book_monthly') }}" class="list-group-item list-group-item-action bg-light">Books per Month</a>
                     <a href="{{ route('stocks') }}" class="list-group-item list-group-item-action bg-light">Book Availability</a>
                     <a href="" class="list-group-item list-group-item-action bg-light active text-dark">Due Dates</a>
                     <a href="{{ route('borrowed_chart') }}" class="list-group-item list-group-item-action bg-light">Borrowed Dates</a>
                     <a href="{{ route('borrowed_status') }}" class="list-group-item list-group-item-action bg-light">Borrowed Status</a>
                     <a href="{{ route('students_penalty') }}" class="list-group-item list-group-item-action bg-light">Student's Penalty</a>
+=======
+                    <a href="{{ route('stocks') }}" class="list-group-item list-group-item-action bg-light">Book Availability</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light active text-dark">Due Dates</a>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                     <a href="{{ route('about') }}" class="list-group-item list-group-item-action bg-light">About</a>
                     <a href="/admin/user-activity" class="list-group-item list-group-item-action bg-light">Activity Logs</a>
                 </div>
@@ -112,6 +117,10 @@
                             In this page, you can see the dates of the borrowed books and its corresponding date of return.
 
                             <br><hr>
+<<<<<<< HEAD
+=======
+                            <span class="badge bg-success fw-bold">PASSED DATES</span>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                             <span class="badge bg-danger fw-bold">ON-DUE</span>
                         </div>
                     </div>

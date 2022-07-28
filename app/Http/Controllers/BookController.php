@@ -196,6 +196,7 @@ class BookController extends Controller
             return redirect('login');
         }
     }
+<<<<<<< HEAD
 
     public function dashboard()
     {
@@ -204,6 +205,16 @@ class BookController extends Controller
                 $total_books = DB::select('SELECT genre, COUNT(*) as count FROM books GROUP BY genre');
 
                 return view('graphs.dashboard', compact('total_books'));
+=======
+    public function dashboard()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {      
+                $total_books = DB::select('SELECT genre, COUNT(*) as count FROM books GROUP BY genre');
+                
+                return view('graphs.dashboard', compact('total_books'));
+
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
             } else {
                 return view('users.dashboard');
             }
@@ -216,8 +227,13 @@ class BookController extends Controller
     {
         if (Auth::id()) {
             if (Auth::user()->usertype == 1) {
+<<<<<<< HEAD
                 $total_books = DB::select('SELECT bookTitle, quantity, genre FROM books');
 
+=======
+                $total_books = DB::select('SELECT bookTitle, quantity FROM books');
+            
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                 return view('graphs.stocks', compact('total_books'));
             } else {
                 return view('users.dashboard');
@@ -231,8 +247,13 @@ class BookController extends Controller
     {
         if (Auth::id()) {
             if (Auth::user()->usertype == 1) {
+<<<<<<< HEAD
                 $duedates = DB::select('SELECT stud_num, stud_name, book_title, returnDate FROM borrowed_books  WHERE returnDate>curdate() ORDER BY returnDate');
 
+=======
+                $duedates = DB::select('SELECT stud_num, stud_name, book_title, returnDate FROM borrowed_books ');
+            
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                 return view('graphs.duedates', compact('duedates'));
             } else {
                 return view('users.dashboard');
@@ -254,6 +275,7 @@ class BookController extends Controller
             return redirect('login');
         }
     }
+<<<<<<< HEAD
 
     public function borrowed_chart()
     {
@@ -331,4 +353,6 @@ class BookController extends Controller
             return redirect('login');
         }
     }
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
 }

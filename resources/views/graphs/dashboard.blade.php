@@ -44,8 +44,11 @@ $josn_data = json_encode($series_array);
             })
         </script>
         <style>
+<<<<<<< HEAD
             @import "https://code.highcharts.com/css/highcharts.css";
 
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
             body {
                 overflow-x: hidden;
             }
@@ -101,6 +104,7 @@ $josn_data = json_encode($series_array);
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading">NAVIGATION</div>
                 <div class="list-group list-group-flush">
+<<<<<<< HEAD
                     <a href="" class="list-group-item list-group-item-action bg-light active text-dark">Home</a>
                     <a href="{{ route('book_monthly') }}" class="list-group-item list-group-item-action bg-light">Books per Month</a>
                     <a href="{{ route('stocks') }}" class="list-group-item list-group-item-action bg-light">Book Availability</a>
@@ -108,6 +112,11 @@ $josn_data = json_encode($series_array);
                     <a href="{{ route('borrowed_chart') }}" class="list-group-item list-group-item-action bg-light">Borrowed Dates</a>
                     <a href="{{ route('borrowed_status') }}" class="list-group-item list-group-item-action bg-light">Borrowed Status</a>
                     <a href="{{ route('students_penalty') }}" class="list-group-item list-group-item-action bg-light">Student's Penalty</a>
+=======
+                    <a href="#" class="list-group-item list-group-item-action bg-light active text-dark">Home</a>
+                    <a href="{{ route('stocks') }}" class="list-group-item list-group-item-action bg-light">Book Availability</a>
+                    <a href="{{ route('due_dates') }}" class="list-group-item list-group-item-action bg-light">Due Dates</a>
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                     <a href="{{ route('about') }}" class="list-group-item list-group-item-action bg-light">About</a>
                     <a href="/admin/user-activity" class="list-group-item list-group-item-action bg-light">Activity Logs</a>
                 </div>
@@ -140,6 +149,7 @@ $josn_data = json_encode($series_array);
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <div class="container mt-3">
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
@@ -148,6 +158,8 @@ $josn_data = json_encode($series_array);
                         </div>
                     </div>
 
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
 
 
                 </div>
@@ -167,8 +179,12 @@ $josn_data = json_encode($series_array);
             // Create the chart
             Highcharts.chart('container1', {
                 chart: {
+<<<<<<< HEAD
                     type: 'column',
                     styledMode: true
+=======
+                    type: 'column'
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                 },
                 title: {
                     align: 'left',
@@ -201,15 +217,22 @@ $josn_data = json_encode($series_array);
                         dataLabels: {
                             enabled: true,
                         }
+<<<<<<< HEAD
                     },
                     column: {
                         borderRadius: 20
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                     }
                 },
 
                 tooltip: {
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+<<<<<<< HEAD
                     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+=======
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
                 },
 
                 series: [{
@@ -218,6 +241,7 @@ $josn_data = json_encode($series_array);
                     data: <?= $josn_data ?>
                 }]
             });
+<<<<<<< HEAD
 
             // Create the chart
             Highcharts.chart('container2', {
@@ -260,6 +284,8 @@ $josn_data = json_encode($series_array);
                     data: <?= $josn_data ?>
                 }]
             });
+=======
+>>>>>>> bea6db1d838e443f72650735931067ae40e2e6ef
         </script>
 
     </body>

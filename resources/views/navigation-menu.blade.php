@@ -11,9 +11,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @if(Auth::user()->usertype == 1)
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="text-decoration-none">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @endif
+
+                    @if(Auth::user()->usertype == 0)
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="text-decoration-none">
 
                     @if(Auth::user()->usertype == 1)
                     <x-jet-nav-link href="{{ route('book.index') }}" :active="request()->routeIs('book.index') || request()->routeIs('book.create') || request()->routeIs('book.show') || request()->routeIs('book.borrow')" class="text-decoration-none">

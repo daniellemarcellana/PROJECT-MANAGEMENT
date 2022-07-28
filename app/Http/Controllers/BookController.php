@@ -196,4 +196,139 @@ class BookController extends Controller
             return redirect('login');
         }
     }
+
+    public function dashboard()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $total_books = DB::select('SELECT genre, COUNT(*) as count FROM books GROUP BY genre');
+
+                return view('graphs.dashboard', compact('total_books'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function stocks()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $total_books = DB::select('SELECT bookTitle, quantity, genre FROM books');
+
+                return view('graphs.stocks', compact('total_books'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function due_dates()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $duedates = DB::select('SELECT stud_num, stud_name, book_title, returnDate FROM borrowed_books  WHERE returnDate>curdate() ORDER BY returnDate');
+
+                return view('graphs.duedates', compact('duedates'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function about()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                return view('graphs.about');
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function borrowed_chart()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $borrowed_dates = DB::select('SELECT ROW_NUMBER() OVER (ORDER BY DATE(created_at)) row_num, DATE(created_at) as date_borrowed, COUNT(*) as count FROM borrowed_books GROUP BY DATE(created_at)');
+
+                return view('graphs.borrowed_dates', compact('borrowed_dates'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function borrowed_status()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $borrowed_status = DB::select('SELECT status, COUNT(*) as count FROM `borrowed_books` GROUP BY status');
+                $borrowed_total = DB::select('SELECT COUNT(*) as total FROM `borrowed_books`');
+                return view('graphs.borrowed_status', compact('borrowed_status', 'borrowed_total'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function students_penalty()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $users = DB::select('SELECT * FROM users WHERE penalty != "0" ORDER BY (0 + penalty)');
+
+                return view('graphs.students_penalty', compact('users'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function book_monthly()
+    {
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                $monthly_books = DB::select('SELECT
+                t.month,
+                t.monthname,
+                t.book_count,
+                @running_total := @running_total + t.book_count AS cumulative_sum
+            FROM
+                (SELECT
+                    MONTH(created_at) AS month,
+                    MONTHNAME(created_at) AS monthname,
+                    COUNT(created_at) AS book_count
+                FROM
+                    books
+                GROUP BY
+                    MONTH(created_at)) t
+            JOIN(SELECT
+                @running_total := 0) r
+            ORDER BY
+                t.month');
+
+                return view('graphs.book_monthly', compact('monthly_books'));
+            } else {
+                return view('users.dashboard');
+            }
+        } else {
+            return redirect('login');
+        }
+    }
 }
